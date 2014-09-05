@@ -22,7 +22,11 @@ module.exports = {
 		unmarshaller.unmarshalFile("tests/OWC/0.3.1/example-owsContext.xml", function(result) {
 			console.log(result.value.resourceList.layer[0].server[0].onlineResource[0].href);
 			test.equal("http://sigma.openplans.org:8080/geoserver/wms?SERVICE=WMS", result.value.resourceList.layer[0].server[0].onlineResource[0].href);
-			test.done();
+			var marshaller = context.createMarshaller();
+			marshaller.marshalString(result.value, function(result) {
+				console.log(result);
+				test.done();
+			});
 		});
 	},
 	"ExampleInline" : function(test) {
