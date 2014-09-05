@@ -23,10 +23,9 @@ module.exports = {
 			console.log(result.value.resourceList.layer[0].server[0].onlineResource[0].href);
 			test.equal("http://sigma.openplans.org:8080/geoserver/wms?SERVICE=WMS", result.value.resourceList.layer[0].server[0].onlineResource[0].href);
 			var marshaller = context.createMarshaller();
-			marshaller.marshalString(result.value, function(result) {
-				console.log(result);
-				test.done();
-			});
+			var doc = marshaller.marshalString(result);
+			console.log (doc);
+			test.done();
 		});
 	},
 	"ExampleInline" : function(test) {
